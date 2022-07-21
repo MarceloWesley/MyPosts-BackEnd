@@ -10,13 +10,14 @@ export class UsersService {
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
+
   create(createUserDto: CreateUserDto) {
     const user = new this.userModel(createUserDto)
     return user.save();
   }
 
   findAll() {
-   return this.userModel.find()
+    return this.userModel.find()
   }
 
   findOne(id: string) {

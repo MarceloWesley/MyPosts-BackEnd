@@ -17,7 +17,7 @@ export class PostsService {
   }
 
   findAll() {
-    return this.postModel.find()
+    return this.postModel.find().populate('author')
   }
 
   findOne(id: string) {

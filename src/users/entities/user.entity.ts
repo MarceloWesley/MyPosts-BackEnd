@@ -8,20 +8,22 @@ export class User {
   @Prop()
   name: string;
 
-  @Prop({unique: true})
-  emain: string;
+  @Prop()
+  email: string;
 
   @Prop()
   nickname: string;
 
   @Prop()
-  password: string 
+  password: string;
+  
+  @Prop()
+  active?: boolean;
 
   @Prop()
-  active?: boolean
+  createdAt?: Date;
 
-  @Prop()
-  createdAt?: Date
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

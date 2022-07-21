@@ -1,9 +1,8 @@
 export class CreateUserDto {
     name: string
-    email: string 
+    email: string
     nickname: string
-    password: string 
-    active: boolean
-    createdAt?: Date
-    
+    password: string
+    active?: boolean
+    createdAt: Date
 }
