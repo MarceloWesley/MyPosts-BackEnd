@@ -1,27 +1,39 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IsBoolean, IsDate, IsEmail, IsNotEmpty, Matches } from 'class-validator';
 import { Document } from 'mongoose';
+import { RegexHelper } from 'src/helpers/regex.helper';
+
 
 export type UserDocument = User & Document;
 
 @Schema()
 export class User {
   @Prop()
+  @IsNotEmpty()
   name: string;
 
-  @Prop()
+  @Prop({unique: true})
+  @IsNotEmpty()
+  @IsEmail()
   email: string;
 
-  @Prop()
+  @Prop({unique: true})
+  @IsNotEmpty()
   nickname: string;
 
   @Prop()
+  @IsNotEmpty()
+  @Matches(RegexHelper.password)
   password: string;
   
   @Prop()
-  active?: boolean;
+  @IsBoolean()
+  active: boolean;
 
   @Prop()
-  createdAt?: Date;
+  @IsNotEmpty()
+  @IsDate()
+  createdAt: Date;
 
 
 }

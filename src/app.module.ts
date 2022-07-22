@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
+// import { AuthModule } from './auth/auth.module';
 
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://marceloo:v3XTp2qeEKtX1Ade@cluster0.pxsjozu.mongodb.net/?retryWrites=true&w=majority'),
+    MongooseModule.forRoot('mongodb+srv://marceloo:f8r4yj170V2auJd0@cluster0.pxsjozu.mongodb.net/?retryWrites=true&w=majority'),
     UsersModule,
-    PostsModule
+    PostsModule,
+    // AuthModule
   ],
   // controllers: [],
   // providers: [],
