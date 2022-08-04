@@ -34,7 +34,7 @@ export class User {
   @IsNotEmpty()
   @IsDate()
   createdAt: Date;
-  
+
 
 
 }
