@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IsBoolean, IsDate, IsEmail, IsNotEmpty, Matches } from 'class-validator';
+import { IsBoolean, IsDate, IsEmail, IsNotEmpty, Matches, MaxLength, MinLength } from 'class-validator';
 import { Document } from 'mongoose';
 import { RegexHelper } from 'src/helpers/regex.helper';
 
@@ -23,6 +23,8 @@ export class User {
 
   @Prop()
   @IsNotEmpty()
+  @MinLength(4)
+  @MaxLength(20)
   @Matches(RegexHelper.password)
   password: string;
   

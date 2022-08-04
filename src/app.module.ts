@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
@@ -6,6 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt.auth.guard';
 import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { LoginValidationMiddleware } from './auth/middlewares/login-validation.middleware';
 
 
 @Module({
@@ -16,7 +18,7 @@ import { AppService } from './app.service';
     AuthModule,
     // AuthModule
   ],
-  // controllers: [],
+  controllers: [AppController],
   providers: [
     AppService,
     {
@@ -25,4 +27,8 @@ import { AppService } from './app.service';
     },
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+configure(consumer: MiddlewareConsumer) {
+  consumer.apply(LoginValidationMiddleware).forRoutes('login')
+}
+}
